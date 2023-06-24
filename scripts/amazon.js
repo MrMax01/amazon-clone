@@ -58,6 +58,8 @@ products.forEach((product) => {
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
+    let timeoutID;//id for refresh the timer for added chekmark
+
     button.addEventListener('click', () => {
         const productId = button.dataset.productId;
 
@@ -93,5 +95,12 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
         /* CHECKMARK*/
         const checkMark = document.querySelector(`.js-add-checkmark-${productId}`);
         checkMark.classList.add('visible');
+        
+        clearTimeout(timeoutID);
+
+
+        timeoutID = setTimeout(() => {
+            checkMark.classList.remove('visible');
+        }, 2000);
     });
 });
